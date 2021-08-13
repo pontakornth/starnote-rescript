@@ -1,0 +1,68 @@
+.theEditor {
+	grid-column: 2 / -1;
+	background: rgb(245, 245, 245);
+	display: flex;
+	flex-flow: column nowrap;
+	height: 100%;
+	grid-row: 1 / -1;
+}
+
+.editorContent {
+	background: rgb(252, 252, 252);
+	flex: 1;
+	padding: 1rem;
+}
+
+.isEditing {
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+.tabs {
+	display: flex;
+	background: #4860a8;
+}
+
+.tab {
+	padding: .5rem;
+	cursor: pointer;
+	background:	#304890;
+	color: #fff;
+}
+
+
+.tab.isActive {
+	background: #000078;
+	color: #fff;
+}
+
+.titleInput {
+	padding: .5rem;
+	display: block;
+	font-size: 2rem;
+	margin-bottom: 1rem;
+	font-weight: bold;
+	border: none;
+}
+
+.titleInput::placeholder {
+	color: #ddd;
+
+}
+
+.titleInput, .contentInput {
+	border: 1px solid #dedede;
+}
+
+
+.contentInput {
+	display: block;
+	padding: .5rem;
+	width: 100%;
+	font-size: 1rem;
+	flex: 1;
+}
+
+.contentInput::placeholder {
+	color: #ddd;
+}

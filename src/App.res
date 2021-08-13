@@ -1,4 +1,9 @@
+@module external styles: {..} = "./App.module.css"
+
 @react.component
 let make = () => {
-	<div> {React.string("Jojo")} </div>
+	<div> 
+	 <TheEditor />
+	 <TheSidebar />
+	</div>
 }

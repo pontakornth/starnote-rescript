@@ -7,4 +7,6 @@ S /Users/pontakornth/Programming/rescript-note/node_modules/@rescript/react/lib/
 B /Users/pontakornth/Programming/rescript-note/node_modules/@rescript/react/lib/ocaml
 S src
 B lib/bs/src
+S src/components
+B lib/bs/src/components
 ####BSB GENERATED: NO EDIT}
