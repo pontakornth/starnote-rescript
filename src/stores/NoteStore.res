@@ -6,7 +6,7 @@ type note = {
 	id: string,
 }
 
-type rec noteState = {
+type noteState = {
 	currentNoteIndex: int,
 	notes:  array<note>,
 	isEditing: bool,
@@ -14,15 +14,22 @@ type rec noteState = {
 	deleteNote: (string) => unit,
 	editNote: (note) => unit,
 	setNoteIndex: (int) => unit,
-	toggleMode: unit => unit,
-	saveToLocalStorage: unit => unit,
-	loadFromLocalStorage: unit => unit
+	toggleMode: () => unit,
+	saveToLocalStorage: () => unit,
+	loadFromLocalStorage: () => unit
 }
+
+type stateVariant = 
+	| Notes(array<note>)
+	| Bool(bool)
+	| IdFunc(string => unit)
+	| NoteFunc(note => unit)
+	| UnitFunc(() => unit)
 
 
 type set = (noteState => noteState) => unit
 type get = () => noteState
-@module("zustand") external create: ((set, get) => noteState) => () => noteState = "default"
+@module("zustand") external create: ((set, get) => noteState) => (noteState => stateVariant) => stateVariant = "default"
 @val external setLocalStorage: (string, string) => unit = "window.localStorage.setItem"
 @val external getLocalStorage: (string) => string = "window.localStorage.getItem"
 @scope("JSON") @val
