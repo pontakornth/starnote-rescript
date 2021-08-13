@@ -9,4 +9,6 @@ S src
 B lib/bs/src
 S src/components
 B lib/bs/src/components
+S src/stores
+B lib/bs/src/stores
 ####BSB GENERATED: NO EDIT}

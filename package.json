@@ -5,10 +5,11 @@
     "build": "vite build",
     "serve": "vite preview",
     "re:build": "rescript",
-    "re:watch": "rescript -w"
+    "re:watch": "rescript build -w"
   },
   "dependencies": {
     "@rescript/react": "^0.10.3",
+    "nanoid": "^3.1.25",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "zustand": "^3.5.7"
