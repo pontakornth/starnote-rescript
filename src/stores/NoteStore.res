@@ -20,7 +20,7 @@ type noteActions =
 	| SetNoteIndex(int)
 	| ToggleMode
 
-let useNotes = React.useReducer((state, action) => {
+let useNotes = () => React.useReducer((state, action) => {
 	// TODO: find a way to handle localstorage
 	switch action {
 		| AddNote(title) => { ...state, notes: concat(state.notes, [{

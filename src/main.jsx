@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
+import "sanitize.css"
+import "./index.css"
 import {make as App} from './App.bs.js'
 
 ReactDOM.render(

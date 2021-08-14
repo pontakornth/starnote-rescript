@@ -4,28 +4,50 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as NoteStore from "./stores/NoteStore.bs.js";
 import * as TheEditor from "./components/TheEditor.bs.js";
-import * as Pervasives from "rescript/lib/es6/pervasives.js";
+import * as Caml_array from "rescript/lib/es6/caml_array.js";
 import * as TheSidebar from "./components/TheSidebar.bs.js";
 import * as AppModuleCss from "./App.module.css";
 
 var styles = AppModuleCss;
 
 function App(Props) {
-  var boxed = NoteStore.useNotes(function (state) {
-        return {
-                TAG: /* UnitFunc */4,
-                _0: state.loadFromLocalStorage
-              };
-      });
-  React.useEffect((function () {
-          if (boxed.TAG === /* UnitFunc */4) {
-            Curry._1(boxed._0, undefined);
-          } else {
-            Pervasives.failwith("Something wrong");
-          }
-          
-        }), []);
-  return React.createElement("div", undefined, React.createElement(TheEditor.make, {}), React.createElement(TheSidebar.make, {}));
+  var match = NoteStore.useNotes(undefined);
+  var dispatch = match[1];
+  var noteState = match[0];
+  var toggleMode = function (_e) {
+    return Curry._1(dispatch, /* ToggleMode */0);
+  };
+  var editNoteContent = function (e) {
+    var currentNote = Caml_array.get(noteState.notes, noteState.currentNoteIndex);
+    return Curry._1(dispatch, {
+                TAG: /* EditNote */2,
+                _0: {
+                  title: currentNote.title,
+                  content: e.target.value,
+                  id: currentNote.id
+                }
+              });
+  };
+  var editNoteTitle = function (e) {
+    var currentNote = Caml_array.get(noteState.notes, noteState.currentNoteIndex);
+    return Curry._1(dispatch, {
+                TAG: /* EditNote */2,
+                _0: {
+                  title: e.target.value,
+                  content: currentNote.content,
+                  id: currentNote.id
+                }
+              });
+  };
+  return React.createElement("div", {
+              className: styles.App
+            }, React.createElement(TheEditor.make, {
+                  onChangeContent: editNoteContent,
+                  onChangeTitle: editNoteTitle,
+                  onToggleMode: toggleMode,
+                  isEditing: noteState.isEditing,
+                  currentNote: Caml_array.get(noteState.notes, noteState.currentNoteIndex)
+                }), React.createElement(TheSidebar.make, {}));
 }
 
 var make = App;

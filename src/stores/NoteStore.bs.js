@@ -4,67 +4,69 @@ import * as React from "react";
 import * as Nanoid from "nanoid";
 import * as Belt_Array from "rescript/lib/es6/belt_Array.js";
 
-var useNotes = React.useReducer((function (state, action) {
-        if (typeof action === "number") {
-          return {
-                  currentNoteIndex: state.currentNoteIndex,
-                  notes: state.notes,
-                  isEditing: !state.isEditing
-                };
-        }
-        switch (action.TAG | 0) {
-          case /* AddNote */0 :
-              return {
-                      currentNoteIndex: state.currentNoteIndex,
-                      notes: Belt_Array.concat(state.notes, [{
-                              title: action._0,
-                              content: "",
-                              id: Nanoid.nanoid()
-                            }]),
-                      isEditing: state.isEditing
-                    };
-          case /* DeleteNote */1 :
-              var id = action._0;
-              return {
-                      currentNoteIndex: state.currentNoteIndex,
-                      notes: Belt_Array.keep(state.notes, (function (n) {
-                              return n.id !== id;
-                            })),
-                      isEditing: state.isEditing
-                    };
-          case /* EditNote */2 :
-              var note = action._0;
-              return {
-                      currentNoteIndex: state.currentNoteIndex,
-                      notes: Belt_Array.map(state.notes, (function (n) {
-                              if (n.id === note.id) {
-                                return note;
-                              } else {
-                                return n;
-                              }
-                            })),
-                      isEditing: state.isEditing
-                    };
-          case /* SetNoteIndex */3 :
-              return {
-                      currentNoteIndex: action._0,
-                      notes: state.notes,
-                      isEditing: state.isEditing
-                    };
-          
-        }
-      }), {
-      currentNoteIndex: 0,
-      notes: [{
-          title: "Hello, Note",
-          content: "## Good luck",
-          id: Nanoid.nanoid()
-        }],
-      isEditing: true
-    });
+function useNotes(param) {
+  return React.useReducer((function (state, action) {
+                if (typeof action === "number") {
+                  return {
+                          currentNoteIndex: state.currentNoteIndex,
+                          notes: state.notes,
+                          isEditing: !state.isEditing
+                        };
+                }
+                switch (action.TAG | 0) {
+                  case /* AddNote */0 :
+                      return {
+                              currentNoteIndex: state.currentNoteIndex,
+                              notes: Belt_Array.concat(state.notes, [{
+                                      title: action._0,
+                                      content: "",
+                                      id: Nanoid.nanoid()
+                                    }]),
+                              isEditing: state.isEditing
+                            };
+                  case /* DeleteNote */1 :
+                      var id = action._0;
+                      return {
+                              currentNoteIndex: state.currentNoteIndex,
+                              notes: Belt_Array.keep(state.notes, (function (n) {
+                                      return n.id !== id;
+                                    })),
+                              isEditing: state.isEditing
+                            };
+                  case /* EditNote */2 :
+                      var note = action._0;
+                      return {
+                              currentNoteIndex: state.currentNoteIndex,
+                              notes: Belt_Array.map(state.notes, (function (n) {
+                                      if (n.id === note.id) {
+                                        return note;
+                                      } else {
+                                        return n;
+                                      }
+                                    })),
+                              isEditing: state.isEditing
+                            };
+                  case /* SetNoteIndex */3 :
+                      return {
+                              currentNoteIndex: action._0,
+                              notes: state.notes,
+                              isEditing: state.isEditing
+                            };
+                  
+                }
+              }), {
+              currentNoteIndex: 0,
+              notes: [{
+                  title: "Hello, Note",
+                  content: "## Good luck",
+                  id: Nanoid.nanoid()
+                }],
+              isEditing: true
+            });
+}
 
 export {
   useNotes ,
   
 }
-/* useNotes Not a pure module */
+/* react Not a pure module */
