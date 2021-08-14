@@ -3,7 +3,7 @@
 
 module ReactMarkdown = {
 	@react.component @module("react-markdown") 
-	external make: (~children: React.element) => React.element = "default"
+	external make: (~children: React.element, ~components: {..}) => React.element = "default"
 }
 
 @react.component
@@ -38,7 +38,7 @@ let make = (~onChangeContent, ~onChangeTitle, ~onToggleMode, ~isEditing, ~curren
 	   : 
 	   <>
 	   <h1>{React.string(currentNote.title)}</h1>
-	   <ReactMarkdown>
+	   <ReactMarkdown components>
 	   {React.string(currentNote.content)}
 	   </ReactMarkdown>
 	   </>}

@@ -40,7 +40,8 @@ function TheEditor(Props) {
                             value: currentNote.content,
                             onChange: onChangeContent
                           })) : React.createElement(React.Fragment, undefined, React.createElement("h1", undefined, currentNote.title), React.createElement(ReactMarkdown, {
-                            children: currentNote.content
+                            children: currentNote.content,
+                            components: components
                           }))));
 }
 
